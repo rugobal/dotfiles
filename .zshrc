@@ -144,5 +144,21 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 
+# Set the keybinding to Emacs mode
+# This is to be able to use:
+# Ctrl+a: Move to the beginning of the line
+# Ctrl+e: Move to the end of the line
+# Ctrl+k: Delete from the cursor to the end of the line
+# Ctrl+u: Delete from the cursor to the beginning of the line
+bindkey -e
+
+# Bind Ctrl+i to delete from cursor to end of line, sin ce Ctrl+k is conflicting with tmux and neovim
+bindkey '^i' kill-line
+
+# Bind Ctrl+u to delete from cursor to beginning of line
+bindkey '^u' backward-kill-line
+
+
+
 export PATH="$PATH:/opt/nvim-linux64/bin"
 alias config='/usr/bin/git --git-dir=/home/rugobal/.dotfiles/ --work-tree=/home/rugobal'
