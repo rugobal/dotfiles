@@ -58,6 +58,7 @@ return {
       },
     },
     opts = {
+      root_func = require('lspconfig.util').root_pattern("pyproject.toml", "setup.py", "requirements.txt", ".git"),
       -- Example 1:
         -- Default behaviour for `tqdm` is `from tqdm.auto import tqdm`.
         -- If you want to change it to `import tqdm`, you can set `import = {"tqdm"}` and `import_from = {tqdm = nil}` here.
