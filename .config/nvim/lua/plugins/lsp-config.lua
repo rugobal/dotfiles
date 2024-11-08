@@ -73,7 +73,7 @@ return {
       vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, {})
       -- vim.keymap.set('n', '<leader>s', vim.lsp.buf.workspace_symbol, {}) -- this will be mapped to telescope
       -- vim.keymap.set('n', '<leader>ds', vim.lsp.buf.document_symbol, {}) -- this will be mapped to telescope
-      vim.keymap.set({ 'n', 'i' }, '<leader>p', vim.lsp.buf.signature_help, {})
+      vim.keymap.set({ 'n', 'i' }, '<leader>k', vim.lsp.buf.signature_help, {})
       vim.keymap.set({ 'n', 'v' }, '<leader>.', vim.lsp.buf.code_action, {})
 
       -- map next definition to ]d and previous definition to [d
