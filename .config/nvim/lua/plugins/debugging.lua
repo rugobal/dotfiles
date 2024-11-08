@@ -120,16 +120,43 @@ return {
     end, {})
 
 
+    -- Define a function to set a conditional breakpoint
+    local function set_conditional_breakpoint()
+      local dap = require('dap')
+      vim.ui.input({ prompt = 'Condition: ' }, function(input)
+        if input then
+          dap.set_breakpoint(input)
+          print('. Breakpoint set with condition: ' .. input)
+        end
+      end)
+    end
+
+    vim.api.nvim_create_user_command("DapConditionalBreakpoint", function()
+      set_conditional_breakpoint()
+    end, {})
+
+    -- Create a custom command to toggle the DAP UI
+    vim.api.nvim_create_user_command("DapToggleUI", function()
+      require("dapui").toggle()
+    end, {})
+
+
 		vim.keymap.set("n", "<Leader>db", ":DapToggleBreakpoint<CR>")
 		vim.keymap.set("n", "<Leader>dc", ":DapContinue<CR>")
-		vim.keymap.set("n", "<Leader>dx", ":DapTerminate<CR>")
+		vim.keymap.set("n", "<Leader>dx", ":DapTerminate<CR><bar>:DebugLast<CR>")
 		vim.keymap.set("n", "<F10>", ":DapStepOver<CR>")
 		vim.keymap.set("n", "<F9>", ":DapStepInto<CR>")
 		vim.keymap.set("n", "<F12>", ":DapStepOut<CR>")
 
 
-		vim.keymap.set("n", "<F4>", ":DebugLast<CR>")
+		vim.keymap.set("n", "<F4>", ":DapTerminate<CR>")
 		vim.keymap.set("n", "<F5>", ":Debug<CR>")
+
+    -- Map the function to a keybinding, for example, <leader>cb
+    vim.api.nvim_set_keymap('n', '<leader>cb', ':DapConditionalBreakpoint<CR>', { noremap = true, silent = true })
+
+    -- Map <leader>du to toggle the DAP UI
+    vim.keymap.set('n', '<leader>du', ":DapToggleUI<CR>", { noremap = true, silent = true })
 
 	end,
 
