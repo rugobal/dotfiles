@@ -20,10 +20,10 @@ return {
         -- Requires visually selecting the code you want to refactor and calling :'<,'>lua vim.lsp.buf.code_action()
         null_ls.builtins.code_actions.refactoring,
 
-        require("none-ls.diagnostics.eslint"), -- requires none-ls-extras.nvim
+        require("none-ls.diagnostics.eslint_d"), -- requires none-ls-extras.nvim
         require("none-ls.diagnostics.cpplint"),
         require("none-ls.formatting.jq"),
-        require("none-ls.code_actions.eslint"),
+        require("none-ls.code_actions.eslint_d"),
 			},
 		})
 
@@ -43,14 +43,14 @@ return {
 
 		vim.keymap.set("v", "<leader>f", range_formatting, { desc = "Range Formatting" })
 
-		vim.keymap.set("n", "<leader>m", function()
+		vim.keymap.set("n", "<leader>fd", function()
 			vim.lsp.buf.format()
 		end)
 
 		-- sort imports and remove unused ones
 		vim.api.nvim_set_keymap(
 			"n",
-			"<leader>o",
+			"<leader>oi",
 			":!isort % && autoflake --in-place --remove-unused-variables --remove-all-unused-imports %<CR>:e<CR>",
 			{ noremap = true, silent = true }
 		) -- sorting imports with isort
