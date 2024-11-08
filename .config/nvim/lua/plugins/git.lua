@@ -65,6 +65,8 @@ return {
           map('n', '<leader>tB', gs.toggle_current_line_blame)
           map('n', '<leader>hd', gs.diffthis)
           map('n', '<leader>hD', function() gs.diffthis('~') end)
+          map('n', '[[', gs.prev_hunk)
+          map('n', ']]', gs.next_hunk)
 
           -- Text object
           map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
