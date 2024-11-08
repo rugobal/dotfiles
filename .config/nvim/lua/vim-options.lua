@@ -25,7 +25,7 @@ vim.opt.updatetime = 50
 vim.opt.timeout = true
 vim.opt.timeoutlen = 500 -- Time in milliseconds; adjust to your preference
 
--- remap C-v to <leader>v
+-- remap C-v to <leader>v for visual block mode
 vim.api.nvim_set_keymap("n", "<leader>v", "<C-v>", { noremap = true, silent = true })
 
 -- do not wrap lines
@@ -112,22 +112,52 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
--- greatest remap ever
-vim.keymap.set("x", "<leader>p", [["_dP]])
 
--- Create new mappings for '<leader>d' and '<leader>dd' to mimic the default behavior
+-- -- Create new mappings for '<leader>d' and '<leader>dd' to mimic the default behavior
+-- vim.keymap.set('n', '<leader>d', 'd', { noremap = true, silent = true })
+-- vim.keymap.set('n', '<leader>dd', 'dd', { noremap = true, silent = true })
+-- vim.keymap.set('v', '<leader>d', 'd', { noremap = true, silent = true })
+-- vim.keymap.set('n', '<leader>c', 'c', { noremap = true, silent = true })
+-- vim.keymap.set('v', '<leader>c', 'c', { noremap = true, silent = true })
+-- -- Remap 'd' and 'dd' to the black hole register
+-- vim.keymap.set('n', 'd', '"_d', { noremap = true, silent = true })
+-- vim.keymap.set('n', 'dd', '"_dd', { noremap = true, silent = true })
+-- vim.keymap.set('v', 'd', '"_d', { noremap = true, silent = true })
+-- vim.keymap.set('n', 'x', '"_x', { noremap = true, silent = true })
+-- vim.keymap.set('n', 'c', '"_c', { noremap = true, silent = true })
+-- vim.keymap.set('v', 'c', '"_c', { noremap = true, silent = true })
+-- === Deletion Mappings ===
+
+-- Create new mappings for '<leader>d' and '<leader>dd' to mimic the default behavior in Normal Mode
 vim.keymap.set('n', '<leader>d', 'd', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>dd', 'dd', { noremap = true, silent = true })
 vim.keymap.set('v', '<leader>d', 'd', { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>c', 'c', { noremap = true, silent = true })
-vim.keymap.set('v', '<leader>c', 'c', { noremap = true, silent = true })
--- Remap 'd' and 'dd' to the black hole register
+
+-- Remap 'd' and 'dd' to the black hole register in Normal and Visual Modes
 vim.keymap.set('n', 'd', '"_d', { noremap = true, silent = true })
 vim.keymap.set('n', 'dd', '"_dd', { noremap = true, silent = true })
 vim.keymap.set('v', 'd', '"_d', { noremap = true, silent = true })
-vim.keymap.set('n', 'x', '"_x', { noremap = true, silent = true })
+
+-- === Change Mappings ===
+
+-- Create new mappings for '<leader>c' to mimic the default behavior in Normal and Visual Modes
+vim.keymap.set('n', '<leader>c', 'c', { noremap = true, silent = true })
+vim.keymap.set('v', '<leader>c', 'c', { noremap = true, silent = true })
+
+-- Remap 'c' to the black hole register in Normal and Visual Modes
 vim.keymap.set('n', 'c', '"_c', { noremap = true, silent = true })
 vim.keymap.set('v', 'c', '"_c', { noremap = true, silent = true })
+
+-- === Paste Mappings ===
+
+-- Keep 'p' in Normal Mode as default (no mapping)
+
+-- Visual Mode: Paste without yanking the replaced text
+vim.keymap.set('v', 'p', '"_dP', { noremap = true, silent = true })
+
+-- Leader Paste: Perform default 'p' behavior in Normal and Visual Modes
+vim.keymap.set('n', '<leader>p', '<cmd>normal! p<CR>', { noremap = true, silent = true })
+vim.keymap.set('v', '<leader>p', '<cmd>normal! p<CR>', { noremap = true, silent = true })
 
 
 -- next greatest remap ever : asbjornHaland
@@ -137,10 +167,10 @@ vim.keymap.set('v', 'c', '"_c', { noremap = true, silent = true })
 -- vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 -- i don't know what they do
-vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
-vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
-vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
-vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
+-- vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
+-- vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
+-- vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
+-- vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 
@@ -176,7 +206,7 @@ vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = tr
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- remap going to the previous edited file
-vim.keymap.set('n', '<S-Tab>', '<C-^>', { noremap = true, silent = true })
+vim.keymap.set({'n', 'i'}, '<S-Tab>', '<C-^>', { noremap = true, silent = true })
 
 
 
